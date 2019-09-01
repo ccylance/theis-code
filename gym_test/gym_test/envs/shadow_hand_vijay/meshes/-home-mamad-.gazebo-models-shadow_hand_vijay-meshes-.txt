@@ -1,0 +1,1 @@
+/home/mamad/.gazebo/models/shadow_hand_vijay/meshes/palm_mirror_c.dae
