@@ -1,0 +1,1 @@
+/home/mamad/hand_RL_ws/src/iiwa_pybullet_integration/handlitANDkuka_gym/ddpg/openaiBaselines/scripts/shadow_hand_vijay/model.sdf

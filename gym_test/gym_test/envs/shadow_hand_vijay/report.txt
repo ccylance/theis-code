@@ -1,0 +1,3 @@
+Problem with the model
+The thumb
+---collision with the middle and thproximal, they are contacted without a grap

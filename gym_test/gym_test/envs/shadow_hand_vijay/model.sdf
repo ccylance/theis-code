@@ -1,0 +1,1788 @@
+<?xml version='1.0'?>
+
+<sdf version='1.6'>
+
+<model name='shadow_hand_vijay'>
+    <static>true</static>
+    <link name = "world">
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0 0 0 0</pose>
+            <mass>0.0</mass>
+            <inertia>
+                <ixx>0.</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.</iyy>
+                <iyz>0</iyz>
+                <izz>0.</izz>
+            </inertia>
+        </inertial>
+    </link>
+    <link name = "forearm">
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.09 0 0 0</pose>
+            <mass>3.0</mass>
+            <inertia>
+                <ixx>0.0138</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.0138</iyy>
+                <iyz>0</iyz>
+                <izz>0.00744</izz>
+            </inertia>
+        </inertial>
+
+        <visual name='visual_forearm_link'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/forearm.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.6385289044704503 0.8003597431028389 0.1592087543131009 1</ambient>
+                <diffuse>0.6536022846683082 0.25383874521979477 0.5562240169368813 1</diffuse>
+                <specular>0.37512068090407735 0.2952056370355539 0.418748985674932 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_forearm_link'>
+           
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/forearm.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <joint name = "world" type = "fixed">
+        <child>forearm</child>
+        <parent>world</parent>
+    </joint>
+    <link name = "wrist">
+        <pose frame=''>0 -0.01 0.213 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.029 0 0 0</pose>
+            <mass>0.1</mass>
+            <inertia>
+                <ixx>3.5e-05</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>6.4e-05</iyy>
+                <iyz>0</iyz>
+                <izz>4.38e-05</izz>
+            </inertia>
+        </inertial>
+
+        <visual name='visual_wrist_link'>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/wrist.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.4764172504866 0.18077008069320555 0.6776385452289645 1</ambient>
+                <diffuse>0.20367695429804666 0.3318839729814894 0.40550103835334317 1</diffuse>
+                <specular>0.41709125989422535 0.6636901367286385 0.9972018517242833 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_wrist_link'>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/wrist.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+     <joint name='WRJ2' type='revolute'>
+        <child>wrist</child>
+        <parent>forearm</parent>
+        <axis>
+            <xyz>0 1 0</xyz>
+            <limit>
+                <lower>-0.523599</lower>
+                <upper>0.174533</upper>
+                <effort>10</effort>
+                <velocity>2.0</velocity>
+            </limit>
+            <dynamics>
+                <damping>0.1</damping>
+                <friction>0.0</friction>
+                <spring_reference>0.0</spring_reference>
+                <spring_stiffness>0.0</spring_stiffness>
+            </dynamics>
+            <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+        <physics>
+            <provide_feedback>1</provide_feedback>
+            <ode>
+              <provide_feedback>1</provide_feedback>
+              <implicit_spring_damper>1</implicit_spring_damper>
+              <cfm_damping>1</cfm_damping>
+              <limit>
+                <cfm>0</cfm>
+                <erp>0.2</erp>
+              </limit>
+            </ode>
+        </physics>
+    </joint>  
+
+
+    <link name = "palm">
+        <pose frame=''>0.0 -0.01 0.247 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.035 0 0 0</pose>
+            <mass>0.3</mass>
+            <inertia>
+                <ixx>0.0003581</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.0005287</iyy>
+                <iyz>0</iyz>
+                <izz>0.000191</izz>
+            </inertia>
+        </inertial>
+	  
+        <visual name='visual_palm_link'>
+            
+            <geometry>
+                <mesh>
+                    <scale>-0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/palm_mirror_c.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.9693190473886442 0.30246241061596024 0.7789017745872058 1</ambient>
+                <diffuse>0.7278134183719978 0.39520219912374543 0.7893616311023858 1</diffuse>
+                <specular>0.2238212011382068 0.06326544695883152 0.623837271294008 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_palm_link'>
+            
+            <geometry>
+                <mesh>
+                    <scale>-0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/palm_mirror_c.dae</uri>
+                </mesh>
+                
+            </geometry>
+            <material>
+
+            </material>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+   
+    </link>
+    <joint name='WRJ1' type='revolute'>
+        <child>palm</child>
+        <parent>wrist</parent>
+        <axis>
+            <xyz>1 0 0</xyz>
+            <limit>
+                <lower>-0.698132</lower>
+                <upper>0.488692</upper>
+                <effort>30</effort>
+                <velocity>2.0</velocity>
+            </limit>
+            <dynamics>
+                <damping>0.1</damping>
+                <friction>0.0</friction>
+                <spring_reference>0.0</spring_reference>
+                <spring_stiffness>0.0</spring_stiffness>
+            </dynamics>
+            <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+        <physics>
+            <provide_feedback>1</provide_feedback>
+            <ode>
+              <provide_feedback>1</provide_feedback>
+              <implicit_spring_damper>1</implicit_spring_damper>
+              <cfm_damping>1</cfm_damping>
+              <limit>
+                <cfm>0</cfm>
+                <erp>0.2</erp>
+              </limit>
+            </ode>
+        </physics>
+    </joint>   
+
+   
+  
+    <link name = "knuckleFF">
+        
+        <pose frame=''>0.033 -0.01 0.342 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <mass>0.008</mass>
+            <inertia>
+                <ixx>2.6e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.6e-07</iyy>
+                <iyz>0</iyz>
+                <izz>3.2e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_knuckle_link_FF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.33794211456009204 0.18945700780534036 0.5985977645121082 1</ambient>
+                <diffuse>0.26137437525983787 0.534889027815362 0.25994071277927167 1</diffuse>
+                <specular>0.5009409525286399 0.46205163917765857 0.07059932904878186 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_knuckle_link_FF'>
+            <!--<pose frame=''>0 0 0 0 1.5708 0</pose>-->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+
+    <link name = "proximalFF">
+        <pose frame=''>0.033 -0.01 0.342 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0225 0 0 0</pose>
+            <mass>0.03</mass>
+            <inertia>
+                <ixx>9.8e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.0e-05</iyy>
+                <iyz>0</iyz>
+                <izz>1.8e-06</izz>
+            </inertia>
+        </inertial>
+        
+        <visual name='visual_proximal_link_FF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.3475671629420498 0.39209081233144294 0.43398597221115864 1</ambient>
+                <diffuse>0.15381062057300565 0.457847928501253 0.2736777317336355 1</diffuse>
+                <specular>0.2994825962387707 0.1957753548086234 0.6597939951268745 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_proximal_link_FF'>
+            <!-- <pose frame=''>0 0 0.025 0 0 0</pose> -->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "middleFF">
+        <pose frame=''>0.033 -0.01 0.387 0 0 1.571</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0125 0 0 0</pose>
+            <mass>0.017</mass>
+            <inertia>
+                <ixx>2.6e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.7e-06</iyy>
+                <iyz>0</iyz>
+                <izz>8.7e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_middle_link_FF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_finger_adapter.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.832357923619328 0.8765357895540546 0.9292506352326827 1</ambient>
+                <diffuse>0.35061556587128695 0.658641343908015 0.43264394305221066 1</diffuse>
+                <specular>0.232842627014054 0.3742311303894216 0.6036043874047603 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_middle_link_FF'>
+            <!-- <pose frame=''>0 0 0.0125 0 0 0</pose> -->
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_finger_adapter.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "distalFF">
+        <pose frame=''>0.033 -0.01 0.394 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.012 0 0 0</pose>
+            <mass>0.012</mass>
+            <inertia>
+                <ixx>9.4e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.1e-06</iyy>
+                <iyz>0</iyz>
+                <izz>5.3e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_distal_link_FF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.0254 0.0254 0.0254</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_decimated.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.555888421428463 0.3367683528673633 0.2134362256546195 1</ambient>
+                <diffuse>0.7722148355883097 0.5107034239911391 0.40757091719195937 1</diffuse>
+                <specular>0.0748300364639658 0.08577761209889079 0.3551975395935918 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_distal_link_FF'>
+            <geometry>
+                <mesh>
+                    <scale>0.0254 0.0254 0.0254</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_decimated.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    
+    
+        
+        <joint name="J3_FF" type="revolute">
+            <child>proximalFF</child>
+            <parent>knuckleFF</parent>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+        
+        <joint name="J2_FF" type="revolute">
+            <child>middleFF</child>
+            <parent>proximalFF</parent>
+            <pose>0 0 0 0 0 -1.57</pose>
+            <axis>
+                <xyz>0 -1 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+        
+        <joint name="J1_FF" type="fixed">
+            <child>distalFF</child>
+            <parent>middleFF</parent>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+    <joint name='J4_FF' type="revolute">
+        <child>knuckleFF</child>
+        <parent>palm</parent>
+        
+        <axis>
+            <xyz>0 -1 0</xyz>
+            <limit>
+                <lower>-0.349066 </lower>
+                <upper>0.349066 </upper>
+                <effort>2.0 </effort>
+                <velocity>2.0 </velocity>
+            </limit>
+            <dynamics>
+                <damping>0.1</damping>
+                <friction>0.0</friction>
+                <spring_reference>0</spring_reference>
+                <spring_stiffness>0</spring_stiffness>
+            </dynamics>
+        </axis>
+    </joint>
+  
+
+   
+  
+    <link name = "knuckleMF">
+        
+        <pose frame=''>0.011000000000000003 -0.01 0.34600000000000003 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <mass>0.008</mass>
+            <inertia>
+                <ixx>2.6e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.6e-07</iyy>
+                <iyz>0</iyz>
+                <izz>3.2e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_knuckle_link_MF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.8776770284380783 0.7386422779720154 0.24416797354567132 1</ambient>
+                <diffuse>0.8766428362357329 0.7206211610946771 0.031251608384017304 1</diffuse>
+                <specular>0.7811221396483907 0.5592549957169235 0.4719249009971833 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_knuckle_link_MF'>
+            <!--<pose frame=''>0 0 0 0 1.5708 0</pose>-->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+
+    <link name = "proximalMF">
+        <pose frame=''>0.011000000000000003 -0.01 0.34600000000000003 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0225 0 0 0</pose>
+            <mass>0.03</mass>
+            <inertia>
+                <ixx>9.8e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.0e-05</iyy>
+                <iyz>0</iyz>
+                <izz>1.8e-06</izz>
+            </inertia>
+        </inertial>
+        
+        <visual name='visual_proximal_link_MF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.6283425427770389 0.2521191909560827 0.9556106587229989 1</ambient>
+                <diffuse>0.0648380464455266 0.00414793697696858 0.2757885661597631 1</diffuse>
+                <specular>0.38715730102389556 0.03308913679362935 0.8305249559048133 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_proximal_link_MF'>
+            <!-- <pose frame=''>0 0 0.025 0 0 0</pose> -->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "middleMF">
+        <pose frame=''>0.011000000000000003 -0.01 0.391 0 0 1.571</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0125 0 0 0</pose>
+            <mass>0.017</mass>
+            <inertia>
+                <ixx>2.6e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.7e-06</iyy>
+                <iyz>0</iyz>
+                <izz>8.7e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_middle_link_MF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_finger_adapter.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.7660046650643249 0.4857405864542119 0.6272895576071046 1</ambient>
+                <diffuse>0.7818064737540767 0.7355096157932588 0.5305470780216448 1</diffuse>
+                <specular>0.20880716443677372 0.26671380254464516 0.46690830530509253 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_middle_link_MF'>
+            <!-- <pose frame=''>0 0 0.0125 0 0 0</pose> -->
+            <geometry>
+                <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_finger_adapter.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "distalMF">
+        <pose frame=''>0.011000000000000003 -0.01 0.398 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.012 0 0 0</pose>
+            <mass>0.012</mass>
+            <inertia>
+                <ixx>9.4e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.1e-06</iyy>
+                <iyz>0</iyz>
+                <izz>5.3e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_distal_link_MF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.0254 0.0254 0.0254</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_decimated.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.49649997886630126 0.7193210491813605 0.42796502740472464 1</ambient>
+                <diffuse>0.13602803600133306 0.8312101513543353 0.7311645426385013 1</diffuse>
+                <specular>0.3331418231496849 0.9377395603523752 0.7153401047168879 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_distal_link_MF'>
+            <geometry>
+                <mesh>
+                    <scale>0.0254 0.0254 0.0254</scale>
+                    <uri>model://shadow_hand_vijay/meshes/biotac_decimated.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    
+    
+        
+        <joint name="J3_MF" type="revolute">
+            <child>proximalMF</child>
+            <parent>knuckleMF</parent>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+        
+        <joint name="J2_MF" type="revolute">
+            <child>middleMF</child>
+            <parent>proximalMF</parent>
+            <pose>0 0 0 0 0 -1.57</pose>
+            <axis>
+                <xyz>0 -1 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+        
+        <joint name="J1_MF" type="fixed">
+            <child>distalMF</child>
+            <parent>middleMF</parent>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+    <joint name='J4_MF' type="revolute">
+        <child>knuckleMF</child>
+        <parent>palm</parent>
+        
+        <axis>
+            <xyz>0 -1 0</xyz>
+            <limit>
+                <lower>-0.349066 </lower>
+                <upper>0.349066 </upper>
+                <effort>2.0 </effort>
+                <velocity>2.0 </velocity>
+            </limit>
+            <dynamics>
+                <damping>0.1</damping>
+                <friction>0.0</friction>
+                <spring_reference>0</spring_reference>
+                <spring_stiffness>0</spring_stiffness>
+            </dynamics>
+        </axis>
+    </joint>
+  
+
+   
+  
+    <link name = "knuckleRF">
+        
+        <pose frame=''>-0.010999999999999996 -0.01 0.342 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <mass>0.008</mass>
+            <inertia>
+                <ixx>2.6e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.6e-07</iyy>
+                <iyz>0</iyz>
+                <izz>3.2e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_knuckle_link_RF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.2051291694404218 0.7321811677264574 0.6638862758930535 1</ambient>
+                <diffuse>0.9479912546912856 0.6937058823855985 0.1362926980481195 1</diffuse>
+                <specular>0.47797296507073894 0.5433827407208534 0.4007671558655036 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_knuckle_link_RF'>
+            <!--<pose frame=''>0 0 0 0 1.5708 0</pose>-->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+
+    <link name = "proximalRF">
+        <pose frame=''>-0.010999999999999996 -0.01 0.342 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0225 0 0 0</pose>
+            <mass>0.03</mass>
+            <inertia>
+                <ixx>9.8e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.0e-05</iyy>
+                <iyz>0</iyz>
+                <izz>1.8e-06</izz>
+            </inertia>
+        </inertial>
+        
+        <visual name='visual_proximal_link_RF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.7833373865430027 0.5833966429789604 0.5377911574012464 1</ambient>
+                <diffuse>0.16694548292187184 0.5260077766042505 0.6933818156438728 1</diffuse>
+                <specular>0.22746478372707413 0.2865863896003161 0.8279949320699544 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_proximal_link_RF'>
+            <!-- <pose frame=''>0 0 0.025 0 0 0</pose> -->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "middleRF">
+        <pose frame=''>-0.010999999999999996 -0.01 0.387 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0125 0 0 0</pose>
+            <mass>0.017</mass>
+            <inertia>
+                <ixx>2.6e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.7e-06</iyy>
+                <iyz>0</iyz>
+                <izz>8.7e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_middle_link_RF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F2.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.10178206161477177 0.4691981404159099 0.4716511612390226 1</ambient>
+                <diffuse>0.9206304435106056 0.981036718772905 0.6384662591050635 1</diffuse>
+                <specular>0.6218825270714425 0.7082347325442665 0.6638270222629545 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_middle_link_RF'>
+            <!-- <pose frame=''>0 0 0.0125 0 0 0</pose> -->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F2_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "distalRF">
+        <pose frame=''>-0.010999999999999996 -0.01 0.41200000000000003 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.012 0 0 0</pose>
+            <mass>0.012</mass>
+            <inertia>
+                <ixx>9.4e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.1e-06</iyy>
+                <iyz>0</iyz>
+                <izz>5.3e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_distal_link_RF'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/distal_ellipsoid_visual.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.7208676778160544 0.7450211773015086 0.17607338638709158 1</ambient>
+                <diffuse>0.8644749252941641 0.6627093129121837 0.4698803015198334 1</diffuse>
+                <specular>0.24630400196996938 0.002009956317899131 0.5083022907581394 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_distal_link_RF'>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/distal_ellipsoid_visual.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    
+    
+        
+        <joint name="J3_RF" type="revolute">
+            <child>proximalRF</child>
+            <parent>knuckleRF</parent>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+        
+        <joint name="J2_RF" type="revolute">
+            <child>middleRF</child>
+            <parent>proximalRF</parent>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>0 -1 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+        
+        <joint name="J1_RF" type="revolute">
+            <child>distalRF</child>
+            <parent>middleRF</parent>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+            </axis>
+        </joint>
+    
+    <joint name='J4_RF' type="revolute">
+        <child>knuckleRF</child>
+        <parent>palm</parent>
+        
+        <axis>
+            <xyz>0 -1 0</xyz>
+            <limit>
+                <lower>-0.349066 </lower>
+                <upper>0.349066 </upper>
+                <effort>2.0 </effort>
+                <velocity>2.0 </velocity>
+            </limit>
+            <dynamics>
+                <damping>0.1</damping>
+                <friction>0.0</friction>
+                <spring_reference>0</spring_reference>
+                <spring_stiffness>0</spring_stiffness>
+            </dynamics>
+        </axis>
+    </joint>
+  
+
+   
+
+
+
+
+
+
+    
+    <link name = "metacarpalLF">
+        <pose frame=''>-0.033 -0.01 0.26771 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.04 0 0 0</pose>
+            <mass>0.03</mass>
+            <inertia>
+                <ixx>1.45e-05</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.638e-05</iyy>
+                <iyz>0</iyz>
+                <izz>4.272e-06</izz>
+            </inertia>
+        </inertial>
+        <visual name='visual_metacarpal_link_lf'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/lfmetacarpal.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.660221148052336 0.6659514424125724 0.17402647263333104 1</ambient>
+                <diffuse>0.1670223511829616 0.6905157822785355 0.8656046429370783 1</diffuse>
+                <specular>0.3664438180748316 0.8569912259478448 0.15035175436784176 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_metacarpal_link_lf'>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/lfmetacarpal_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+   
+    <link name = "knuckleLF">
+        
+        <pose frame=''>-0.033 -0.01 0.3335 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <mass>0.008</mass>
+            <inertia>
+                <ixx>2.6e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.6e-07</iyy>
+                <iyz>0</iyz>
+                <izz>3.2e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_knuckle_link_lf'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.6609461566468211 0.042706964916244594 0.6036641480486127 1</ambient>
+                <diffuse>0.6810297911868692 0.04677888191407553 0.65496897844128 1</diffuse>
+                <specular>0.7599144555472321 0.5679342747084454 0.6252090584872781 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_knuckle_link_lf'>
+            <!--<pose frame=''>0 0 0 0 1.5708 0</pose>-->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/knuckle.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+  
+    <link name = "proximalLF">
+        <pose frame=''>-0.033 -0.01 0.3335 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0225 0 0 0</pose>
+            <mass>0.03</mass>
+            <inertia>
+                <ixx>9.8e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.0e-05</iyy>
+                <iyz>0</iyz>
+                <izz>1.8e-06</izz>
+            </inertia>
+        </inertial>
+        
+        <visual name='visual_proximal_link_lf'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.7310017061191018 0.44136809212285055 0.9197094633998435 1</ambient>
+                <diffuse>0.7108969546536167 0.0230717534057564 0.8602569250310051 1</diffuse>
+                <specular>0.8177223204536865 0.15232949374427018 0.8484282902358982 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_proximal_link_lf'>
+            <!-- <pose frame=''>0 0 0.025 0 0 0</pose> -->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F3_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name = "middleLF">
+        <pose frame=''>-0.033 -0.01 0.3785 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.0125 0 0 0</pose>
+            <mass>0.017</mass>
+            <inertia>
+                <ixx>2.6e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.7e-06</iyy>
+                <iyz>0</iyz>
+                <izz>8.7e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_middle_link_lf'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/F2.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.01600837071667416 0.2466219975857581 0.1006074715270262 1</ambient>
+                <diffuse>0.2748175168397551 0.8316941922991016 0.94552576476312 1</diffuse>
+                <specular>0.39863909158498634 0.7045555801829481 0.43316793364495354 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_middle_link_lf'>
+            <!--<pose frame=''>0 0 0.0125 0 0 0</pose>-->
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/lfF2_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+    <link name =  "distalLF">
+        <pose frame=''>-0.033 -0.01 0.4035 0 0 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.012 0 0 0</pose>
+            <mass>0.012</mass>
+            <inertia>
+                <ixx>9.4e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.1e-06</iyy>
+                <iyz>0</iyz>
+                <izz>5.3e-07</izz>
+            </inertia>
+        </inertial>
+      
+        <visual name='visual_distal_link_lf'>
+            
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/distal_ellipsoid_visual.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.20158267245231531 0.8703776633600567 0.35223842058220267 1</ambient>
+                <diffuse>0.5740462894448415 0.18691424564739756 0.9713873262631516 1</diffuse>
+                <specular>0.079668309057503 0.13191633178705742 0.8394034998204267 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_distal_link_lf'>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/lfdistal_ellipsoid_visual.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+    </link>
+
+    
+        <joint name='J3_LF' type="revolute">
+            <child>proximalLF</child>
+            <parent>knuckleLF</parent>
+
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                <provide_feedback>1</provide_feedback>
+                <implicit_spring_damper>1</implicit_spring_damper>
+                <cfm_damping>1</cfm_damping>
+                <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+        <joint name='J2_LF' type="revolute">
+            <child>middleLF</child>
+            <parent>proximalLF</parent>
+
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                <provide_feedback>1</provide_feedback>
+                <implicit_spring_damper>1</implicit_spring_damper>
+                <cfm_damping>1</cfm_damping>
+                <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+        <joint name='J1_LF' type="revolute">
+            <child>distalLF</child>
+            <parent>middleLF</parent>
+
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5707963267948966 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                <provide_feedback>1</provide_feedback>
+                <implicit_spring_damper>1</implicit_spring_damper>
+                <cfm_damping>1</cfm_damping>
+                <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+  
+    <joint name='J4_LF' type="revolute">
+        <child>knuckleLF</child>
+        <parent>metacarpalLF</parent>
+        
+        <axis>
+            <xyz>0 -1 0</xyz>
+            <limit>
+                <lower>-0.349066 </lower>
+                <upper>0.349066 </upper>
+                <effort>2.0 </effort>
+                <velocity>2.0 </velocity>
+            </limit>
+            <dynamics>
+                <damping>0.1</damping>
+                <friction>0.0</friction>
+                <spring_reference>0</spring_reference>
+                <spring_stiffness>0</spring_stiffness>
+            </dynamics>
+            <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+        <physics>
+            <provide_feedback>1</provide_feedback>
+            <ode>
+            <provide_feedback>1</provide_feedback>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+                <cfm>0</cfm>
+                <erp>0.2</erp>
+            </limit>
+            </ode>
+        </physics>
+    </joint>
+      
+    <joint name='LFJ5' type="revolute">
+        <child>metacarpalLF</child>
+        <parent>palm</parent>
+        
+        <axis>
+            <xyz>0.573576 0 0.819152</xyz>
+            <limit>
+                <lower>0 </lower>
+                <upper>0.785398 </upper>
+                <effort>2.0 </effort>
+                <velocity>2.0 </velocity>
+            </limit>
+            <dynamics>
+                <damping>0.1</damping>
+                <friction>0.0</friction>
+                <spring_reference>0</spring_reference>
+                <spring_stiffness>0</spring_stiffness>
+            </dynamics>
+            <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+        <physics>
+            <provide_feedback>1</provide_feedback>
+            <ode>
+            <provide_feedback>1</provide_feedback>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <cfm_damping>1</cfm_damping>
+            <limit>
+                <cfm>0</cfm>
+                <erp>0.2</erp>
+            </limit>
+            </ode>
+        </physics>
+    </joint>
+
+
+    <link name = "thbase">
+        <pose frame=''>0.034 -0.0185 0.276 0 0.785398 0</pose>
+        <inertial>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <mass>0.01</mass>
+            <inertia>
+                <ixx>1.6e-07</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.6e-07</iyy>
+                <iyz>0</iyz>
+                <izz>1.6e-07</izz>
+            </inertia>
+        </inertial>
+        <visual name='visual_thbase_link'>
+
+            <geometry>
+                <box>
+                    <size>0.001 0.001 0.001</size>
+                </box>
+            </geometry>
+            <material>
+                <ambient>0.43660802464597015 0.8991945135996708 0.4374841276496386 1</ambient>
+                <diffuse>0.8594506620169794 0.4133775900557052 0.040479474420908046 1</diffuse>
+                <specular>0.08046759083670407 0.9307314907896969 0.3811159491401557 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_thbase_link'>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <geometry>
+
+                <sphere>
+                    <radius>0.011</radius>
+                </sphere>
+
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "thproximal">
+
+        <pose frame=''>0.034 -0.0185 0.276 0 0.785398 0.0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.019 0 0 0</pose>
+            <mass>0.04</mass>
+            <inertia>
+                <ixx>1.36e-05</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.36e-05</iyy>
+                <iyz>0</iyz>
+                <izz>3.13e-06</izz>
+            </inertia>
+        </inertial>
+
+        <visual name='visual_thproximal_link'>
+
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/TH3_z.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.22355669834308223 0.5898445499388609 0.29590415910538326 1</ambient>
+                <diffuse>0.700463631075395 0.37758815199162543 0.9167895581743403 1</diffuse>
+                <specular>0.7651067978784616 0.1988151157553385 0.5735956033579545 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_thproximal_link'>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/TH3_z_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+    </link>
+    <link name = "thhub">
+        <pose frame=''>0.06087000000000001 -0.0185 0.30287000000000003 0 0.785398 0.0</pose>
+        <inertial>
+            <pose frame=''>0 0 0 0 0 0</pose>
+            <mass>0.005</mass>
+            <inertia>
+                <ixx>1.0e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1.0e-06</iyy>
+                <iyz>0</iyz>
+                <izz>3.0e-07</izz>
+            </inertia>
+        </inertial>
+        <visual name='visual_thhub_link'>
+
+            <geometry>
+                <box>
+                    <size>0.001 0.001 0.001</size>
+                </box>
+            </geometry>
+            <material>
+
+            </material>
+        </visual>
+        <collision name='collision_thhub_link'>
+            <geometry>
+                <box>
+                    <size>0.001 0.001 0.001</size>
+                </box>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+    </link>
+    <link name = "thmiddle">
+
+        <pose frame=''>0.06087000000000001 -0.0185 0.30287000000000003 0 0.785398 0.0</pose>
+        <inertial>
+            <pose frame=''>0 0 0.016 0 0 0</pose>
+            <mass>0.02</mass>
+            <inertia>
+                <ixx>5.1e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>5.1e-06</iyy>
+                <iyz>0</iyz>
+                <izz>1.21e-06</izz>
+            </inertia>
+        </inertial>
+
+        <visual name='visual_thmiddle_link'>
+
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/TH2_z.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.37734283510734556 0.08010260132127023 0.803992773182451 1</ambient>
+                <diffuse>0.8002979375850422 0.08261219078662574 0.05213707239119181 1</diffuse>
+                <specular>0.5334316427565974 0.7655008288466043 0.5223879250490617 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+
+        <collision name='collision_thmiddle_link'>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/TH2_z_c.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+    </link>
+    <link name = "thdistal">
+
+        <pose frame=''>0.083498 -0.0185 0.32549700000000004 -0.785398 0.0 -1.5708</pose>
+        <inertial>
+            <pose frame=''>0 0 0.014559 0 0 0</pose>
+            <mass>0.017</mass>
+            <inertia>
+                <ixx>2.27794e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>2.37794e-06</iyy>
+                <iyz>0</iyz>
+                <izz>1.0e-06</izz>
+            </inertia>
+        </inertial>
+
+        <visual name='visual_thdistal_link'>
+
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/thdistal_ellipsoid_visual_v2.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0.5142088884775986 0.23693038015461 0.7680185017450517 1</ambient>
+                <diffuse>0.7761849534272065 0.2394179256550878 0.2052743546921647 1</diffuse>
+                <specular>0.6175535712763272 0.578775131818458 0.8102751418684048 1</specular>
+                <emissive>0 0 0 0</emissive>
+            </material>
+        </visual>
+        <collision name='collision_thdistal_link'>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://shadow_hand_vijay/meshes/thdistal_ellipsoid.dae</uri>
+                </mesh>
+            </geometry>
+        </collision>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>1</self_collide>
+    </link>
+
+    
+        <joint name ="THJ5"  type ="revolute">
+            <child>thbase</child>
+            <parent>palm</parent>
+            <axis>
+                <xyz>0 0 -0.707107</xyz>
+                <limit>
+                    <lower>-1.0472 </lower>
+                    <upper>1.0472 </upper>
+                    <effort>5 </effort>
+                    <velocity>4.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.2</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+           
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                  <provide_feedback>1</provide_feedback>
+                  <implicit_spring_damper>1</implicit_spring_damper>
+                  <cfm_damping>1</cfm_damping>
+                  <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                  </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+        <joint name ="THJ4"  type ="revolute">
+            <child>thproximal</child>
+            <parent>thbase</parent>
+            <axis>
+                <xyz>0.707107 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.22173 </upper>
+                    <effort>3.0 </effort>
+                    <velocity>4.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.2</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+           
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                  <provide_feedback>1</provide_feedback>
+                  <implicit_spring_damper>1</implicit_spring_damper>
+                  <cfm_damping>1</cfm_damping>
+                  <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                  </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+        <joint name ="THJ3"  type ="revolute">
+            <child>thhub</child>
+            <parent>thproximal</parent>
+            <axis>
+                <xyz>0.707107 0 -0.707107</xyz>
+                <limit>
+                    <lower>-0.20944 </lower>
+                    <upper>0.20944 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>4.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.2</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+           
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                  <provide_feedback>1</provide_feedback>
+                  <implicit_spring_damper>1</implicit_spring_damper>
+                  <cfm_damping>1</cfm_damping>
+                  <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                  </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+        <joint name ="THJ2"  type ="revolute">
+            <child>thmiddle</child>
+            <parent>thhub</parent>
+            <axis>
+                <xyz>0 -1 0</xyz>
+                <limit>
+                    <lower>-0.698132 </lower>
+                    <upper>0.698132 </upper>
+                    <effort>2.0 </effort>
+                    <velocity>2.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+           
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                  <provide_feedback>1</provide_feedback>
+                  <implicit_spring_damper>1</implicit_spring_damper>
+                  <cfm_damping>1</cfm_damping>
+                  <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                  </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+        <joint name ="THJ1"  type ="revolute">
+            <child>thdistal</child>
+            <parent>thmiddle</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>0 </lower>
+                    <upper>1.5708 </upper>
+                    <effort>1.0 </effort>
+                    <velocity>4.0 </velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.2</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+           
+            <physics>
+                <provide_feedback>1</provide_feedback>
+                <ode>
+                  <provide_feedback>1</provide_feedback>
+                  <implicit_spring_damper>1</implicit_spring_damper>
+                  <cfm_damping>1</cfm_damping>
+                  <limit>
+                    <cfm>0</cfm>
+                    <erp>0.2</erp>
+                  </limit>
+                </ode>
+            </physics>
+        </joint>
+    
+  
+</model>
+</sdf>
